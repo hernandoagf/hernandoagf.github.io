@@ -2,51 +2,91 @@
 	{
 		"name":"J300",
 		"title":"J-300",
-		"rangoif":"1,1 - 1,4 - 1,7"
+		"rangoif":"1,1 - 1,4 - 1,7",
+		"img":"../../images/refinery.jpg",
+		"etileno":"0",
+		"rutaentrada":"F-402, J-400, S-801, S-900, B-328, J-302, B-325",
+		"rutasalida":""
 	},
 	{
 		"name":"J400",
 		"title":"J-400",
-		"rangoif":"2,4 - 3,0 - 3,6"
+		"rangoif":"2,4 - 3,0 - 3,6",
+		"img":"../../images/refinery.jpg",
+		"etileno":"0",
+		"rutaentrada":"J-300, J-500, F-402, F-403, F-404, F-407, F-409, F-502, S-801, S-900",
+		"rutasalida":""
 	},
 	{
 		"name":"J500",
 		"title":"J-500",
-		"rangoif":"4,0 - 5,0 - 6,0"
+		"rangoif":"4,0 - 5,0 - 6,0",
+		"img":"../../images/refinery.jpg",
+		"etileno":"0",
+		"rutaentrada":"J-400, J-600, F-402, F-403, F-404, F-407, F-409, F-502, F-600, F-605",
+		"rutasalida":""
 	},
 	{
 		"name":"J600",
 		"title":"J-600",
-		"rangoif":"5,6 - 7,0 - 8,4"
+		"rangoif":"5,6 - 7,0 - 8,4",
+		"img":"../../images/refinery.jpg",
+		"etileno":"0",
+		"rutaentrada":"J-442, J-500, J-700, F-502, F-600, F-651, S-701, F-605, J-705, J-440, J-744, S-900",
+		"rutasalida":""
 	},
 	{
 		"name":"J700",
 		"title":"J-700",
-		"rangoif":"8,8 - 11,0 - 13,2"
+		"rangoif":"8,8 - 11,0 - 13,2",
+		"img":"../../images/refinery.jpg",
+		"etileno":"0",
+		"rutaentrada":"J-600, J-750, J-758, J-800, J-808, F-600, F-651, S-701, J-442, J-705, F-605, J-440, J-858, J-859, J-846, J-744",
+		"rutasalida":""
 	},
 	{
 		"name":"J705",
 		"title":"J-705",
-		"rangoif":"12,0 - 15,0 - 18,0"
+		"rangoif":"12,0 - 15,0 - 18,0",
+		"img":"../../images/refinery.jpg",
+		"etileno":"0",
+		"rutaentrada":"J-600, J-700, J-800, J-808, S-701, J-750, J-758, F-600, F-605, F-651, J-858, J-859, J-905",
+		"rutasalida":""
 	},
 	{
 		"name":"J800",
 		"title":"J-800",
-		"rangoif":"17,6 - 22,0 - 26,4"
+		"rangoif":"17,6 - 22,0 - 26,4",
+		"img":"../../images/refinery.jpg",
+		"etileno":"0",
+		"rutaentrada":"J-700, J-808, J-901, J-905, J-705, S-701, J-750, J-758, J-858, J-859, J-643, J-744, J-844, J-846",
+		"rutasalida":""
 	},
 	{
 		"name":"J808",
 		"title":"J-808",
-		"rangoif":"17,6 - 22,0 - 26,4"
+		"rangoif":"17,6 - 22,0 - 26,4",
+		"img":"../../images/refinery.jpg",
+		"etileno":"0,6 - 0,9%",
+		"rutaentrada":"J-700, J-800, J-901, J-905, J-705, S-701, J-750, J-758, J-858, J-859",
+		"rutasalida":""
 	},
 	{
 		"name":"J901",
 		"title":"J-901",
-		"rangoif":"32,0 - 40,0 - 48,0"
+		"rangoif":"32,0 - 40,0 - 48,0",
+		"img":"../../images/refinery.jpg",
+		"etileno":"0",
+		"rutaentrada":"J-800, J-808, J-905, J-844, J-846, J-700, J-705, S-900",
+		"rutasalida":""
 	},
 	{
 		"name":"J905",
 		"title":"J905",
-		"rangoif":"38,0 - 42,0 - 46,0"
+		"rangoif":"38,0 - 42,0 - 46,0",
+		"img":"../../images/refinery.jpg",
+		"etileno":"0",
+		"rutaentrada":"J-800, J-808, J-901, J-844, J-846, J-705",
+		"rutasalida":""
 	}
 ]
