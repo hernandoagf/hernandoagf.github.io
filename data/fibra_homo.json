@@ -2,16 +2,28 @@
 	{
 		"name":"S701",
 		"title":"S-701",
-		"rangoif":"10,8 - 12,0 - 13,2"
+		"rangoif":"10,8 - 12,0 - 13,2",
+		"img":"../../images/refinery.jpg",
+		"etileno":"0",
+		"rutaentrada":"J-700, J-705, J-905, J-800",
+		"rutasalida":""
 	},
 	{
 		"name":"S801",
 		"title":"S-801",
-		"rangoif":"17,0 - 20,0 - 23,0"
+		"rangoif":"17,0 - 20,0 - 23,0",
+		"img":"../../images/refinery.jpg",
+		"etileno":"0",
+		"rutaentrada":"J-300, J-400, F-402, S-900, J-302, F-502, J-500",
+		"rutasalida":""
 	},
 	{
 		"name":"S900",
 		"title":"S-900",
-		"rangoif":"32,0 - 35,0 - 38,0"
+		"rangoif":"32,0 - 35,0 - 38,0",
+		"img":"../../images/refinery.jpg",
+		"etileno":"0",
+		"rutaentrada":"J-300, J-400, F-402, S-801, F-502, J-800",
+		"rutasalida":""
 	}
 ]

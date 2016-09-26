@@ -2,11 +2,19 @@
 	{
 		"name":"B325",
 		"title":"B-325",
-		"rangoif":"1,1 - 1,4 - 1,7"
+		"rangoif":"1,1 - 1,4 - 1,7",
+		"img":"../../images/refinery.jpg",
+		"etileno":"2,5 - 3,0%",
+		"rutaentrada":"B-328, J-300, F-404",
+		"rutasalida":""
 	},
 	{
 		"name":"B328",
 		"title":"B-328",
-		"rangoif":"1,1 - 1,4 - 1,7"
+		"rangoif":"1,1 - 1,4 - 1,7",
+		"img":"../../images/refinery.jpg",
+		"etileno":"3,0 - 3,4%",
+		"rutaentrada":"B-325, J-300, F-651",
+		"rutasalida":""
 	}
 ]

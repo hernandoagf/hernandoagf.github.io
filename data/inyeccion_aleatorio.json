@@ -2,11 +2,19 @@
 	{
 		"name":"J750",
 		"title":"J-750",
-		"rangoif":"8,8 - 11,0 - 13,2"
+		"rangoif":"8,8 - 11,0 - 13,2",
+		"img":"../../images/refinery.jpg",
+		"etileno":"2,5 - 3,0%",
+		"rutaentrada":"F-651, J-700, J-758, J-858, J-859, J-705, J-800, J-808, F-605, B-325",
+		"rutasalida":""
 	},
 	{
 		"name":"J758",
 		"title":"J-758",
-		"rangoif":"9,4 - 11,0 - 12,6"
+		"rangoif":"9,4 - 11,0 - 12,6",
+		"img":"../../images/refinery.jpg",
+		"etileno":"3,0 - 3,4%",
+		"rutaentrada":"F-651, J-700, J-750, J-858, J-705, J-800, J-808, J-859",
+		"rutasalida":""
 	}
 ]

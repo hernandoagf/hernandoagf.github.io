@@ -2,26 +2,46 @@
 	{
 		"name":"J440",
 		"title":"J-440",
-		"rangoif":"4,0 - 5,0 - 6,0"
+		"rangoif":"4,0 - 5,0 - 6,0",
+		"img":"../../images/refinery.jpg",
+		"etileno":"12,0 - 14,0%",
+		"rutaentrada":"J-600, J-700, J-442, J-846, J-744, J-844",
+		"rutasalida":""
 	},
 	{
 		"name":"J442",
 		"title":"J-442",
-		"rangoif":"5,5 - 6,5 - 7,5"
+		"rangoif":"5,5 - 6,5 - 7,5",
+		"img":"../../images/refinery.jpg",
+		"etileno":"5,5 - 6,5%",
+		"rutaentrada":"J-600, J-700, J-500, J-440, J-844, J-846",
+		"rutasalida":""
 	},
 	{
 		"name":"J744",
 		"title":"J-744",
-		"rangoif":"14,4 - 18,0 - 21,6"
+		"rangoif":"14,4 - 18,0 - 21,6",
+		"img":"../../images/refinery.jpg",
+		"etileno":"12,0 - 14,0%",
+		"rutaentrada":"J-844, J-440, J-846, J-500",
+		"rutasalida":""
 	},
 	{
 		"name":"J844",
 		"title":"J-844",
-		"rangoif":"24,0 - 30,0 - 36,0"
+		"rangoif":"24,0 - 30,0 - 36,0",
+		"img":"../../images/refinery.jpg",
+		"etileno":"12,0 - 14,0%",
+		"rutaentrada":"J-744, J-846, J-440",
+		"rutasalida":""
 	},
 	{
 		"name":"J846",
 		"title":"J-846",
-		"rangoif":"38,0 - 42,0 - 46,0"
+		"rangoif":"38,0 - 42,0 - 46,0",
+		"img":"../../images/refinery.jpg",
+		"etileno":"12,0 - 14,0%",
+		"rutaentrada":"J-844, J-440, J-744, J-442",
+		"rutasalida":""
 	}
 ]

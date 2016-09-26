@@ -2,31 +2,55 @@
 	{
 		"name":"F402",
 		"title":"F-402",
-		"rangoif":"2,4 - 2,7 - 3,0"
+		"rangoif":"2,4 - 2,7 - 3,0",
+		"img":"../../images/refinery.jpg",
+		"etileno":"0",
+		"rutaentrada":"J-300, J-400, F-502, F-403, F-404, F-407, F-409, S-801, S-900, J-500, B-328",
+		"rutasalida":""
 	},
 	{
 		"name":"F403",
 		"title":"F-403",
-		"rangoif":"2,7 - 3,0 - 3,3"
+		"rangoif":"2,7 - 3,0 - 3,3",
+		"img":"../../images/refinery.jpg",
+		"etileno":"0,6 - 0,9%",
+		"rutaentrada":"J-400, F-402, F-404, F-407, F-409, F-502, J-500",
+		"rutasalida":""
 	},
 	{
 		"name":"F404",
 		"title":"F-404",
-		"rangoif":"2,7 - 3,0 - 3,3"
+		"rangoif":"2,7 - 3,0 - 3,3",
+		"img":"../../images/refinery.jpg",
+		"etileno":"0,6 - 0,9%",
+		"rutaentrada":"J-400, F-402, F-403, F-407, F-409, F-502, J-500",
+		"rutasalida":""
 	},
 	{
 		"name":"F407",
 		"title":"F-407",
-		"rangoif":"2,7 - 3,0 - 3,3"
+		"rangoif":"2,7 - 3,0 - 3,3",
+		"img":"../../images/refinery.jpg",
+		"etileno":"0,6 - 0,9%",
+		"rutaentrada":"J-400, F-402, F-403, F-404, F-409, F-502, J-500",
+		"rutasalida":""
 	},
 	{
 		"name":"F409",
 		"title":"F-409",
-		"rangoif":"2,7 - 3,0 - 3,3"
+		"rangoif":"2,7 - 3,0 - 3,3",
+		"img":"../../images/refinery.jpg",
+		"etileno":"0,6 - 0,9%",
+		"rutaentrada":"J-400, F-402, F-403, F-404, F-407, F-502, J-500",
+		"rutasalida":""
 	},
 	{
 		"name":"F502",
 		"title":"F-502",
-		"rangoif":"3,4 - 3,8 - 4,1"
+		"rangoif":"3,4 - 3,8 - 4,1",
+		"img":"../../images/refinery.jpg",
+		"etileno":"0",
+		"rutaentrada":"J-400, J-500, J-600, F-402, F-403, F-404, F-407, F-409, S-801, S-900, F-600, F-605",
+		"rutasalida":""
 	}
 ]
