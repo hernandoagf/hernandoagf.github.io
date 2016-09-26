@@ -1,0 +1,406 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/paper-styles/typography.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../../bower_components/paper-header-panel/paper-header-panel.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-overlay-behavior/iron-overlay-behavior.html">
+<link rel="import" href="../../bower_components/iron-overlay-behavior/demo/simple-overlay.html">
+<link rel="import" href="../../bower_components/paper-progress/paper-progress.html">
+
+
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+<dom-module id="ciclo-produccion-app">
+  <template>
+    <style include="iron-flex iron-flex-alignment">
+      :host {
+        height: 100%;
+        display: block;
+        background-color: var(--paper-grey-200);
+      }
+      paper-toolbar{
+        background-color: var(--paper-red-700);
+      }
+      .fit{
+        text-align: center;
+      }
+      paper-card{
+        width: 80%;
+        margin-top: 3%;
+        padding: 1%;
+      }
+      #tiposGrados h4{
+        margin: 1vh 0 0 0;
+      }
+      #tiposInyeccion{
+        padding-left: 4%;
+      }
+      #tiposInyeccion div{
+        width: 33%;
+      }
+      .layout.horizontal{
+
+      }
+      .iron-flex{
+        @apply(--layout-vertical);
+        @apply(--layout-around-justified);
+        width: 14%;
+        padding-left: 4%;
+      }
+      paper-button{
+        background-color: var(--paper-purple-700);
+        color: white;
+        width: 50%;
+        margin: 5% 2% 5% 2%;
+      }
+      #inyeccion-homopolimero paper-button{
+        background-color: var(--paper-light-blue-800);
+      }
+      #inyeccion-impacto paper-button{
+        background-color: var(--paper-deep-purple-800);
+      }
+      #inyeccion-aleatorio paper-button{
+        background-color: var(--paper-yellow-800);
+      }
+      #pelicula-homopolimero paper-button{
+        background-color: var(--paper-light-green-800);
+      }
+      #rafia-homopolimero paper-button{
+        background-color: var(--paper-pink-900);
+      }
+      #fibra-homopolimero paper-button{
+        background-color: var(--paper-orange-800);
+      }
+      #soplado-aleatorio paper-button{
+        background-color: var(--paper-blue-800);
+      }
+      .infogrado{
+        width: 50vw;
+        height: 70vh;
+        padding: 0;
+      }
+      .infogrado img{
+        width: 50vw;
+        height: 20vh;
+      }
+      .progress{
+        width: 100%;
+        margin-top: 0;
+      }
+      #backdrop paper-progress{
+        --paper-progress-active-color: var(--paper-light-blue-800);
+      }
+      #backdrop2 paper-progress{
+        --paper-progress-active-color: var(--paper-deep-purple-800);
+      }
+      #backdrop3 paper-progress{
+        --paper-progress-active-color: var(--paper-yellow-800);
+      }
+      #backdrop4 paper-progress{
+        --paper-progress-active-color: var(--paper-light-green-800);
+      }
+      #backdrop5 paper-progress{
+        --paper-progress-active-color: var(--paper-pink-900);
+      }
+      #backdrop6 paper-progress{
+        --paper-progress-active-color: var(--paper-orange-800);
+      }
+      #backdrop7 paper-progress{
+        --paper-progress-active-color: var(--paper-blue-800);
+      }
+    </style>
+
+    <!-- paper-header-panel must have an explicit height -->
+    <paper-header-panel class="flex">
+      <paper-toolbar>
+        <span class="title">Propilven</span>
+      </paper-toolbar>
+      <div class="fit">
+
+    <paper-card>
+
+    <div id="tiposGrados" class="layout horizontal">
+      <div style="width: 44%" class="layout vertical">
+        <h4 style="padding-left: 4%">INYECCIÓN</h4>
+        <div id="tiposInyeccion" class="layout horizontal">
+          <div><h4>HOMOPOLÍMERO</h4></div>
+          <div><h4>IMPACTO</h4></div>
+          <div style="padding-left: 4%"><h4>ALEATORIO</h4></div>
+        </div>
+      </div>
+      <div style="width: 14%" class="layout vertical">
+        <h4 style="padding-left: 4%">PELÍCULA</h4>
+        <h4 style="padding-left: 8%">HOMOPOLÍMERO</h4>
+      </div>
+      <div style="width: 14%" class="layout vertical">
+        <h4 style="padding-left: 8%">RAFIA</h4>
+        <h4 style="padding-left: 12%">HOMOPOLÍMERO</h4>
+      </div>
+      <div style="width: 14%" class="layout vertical">
+        <h4 style="padding-left: 8%">FIBRA</h4>
+        <h4 style="padding-left: 12%">HOMOPOLÍMERO</h4>
+      </div>
+      <div style="width: 14%" class="layout vertical">
+        <h4 style="padding-left: 8%">SOPLADO</h4>
+        <h4 style="padding-left: 12%">ALEATOREO</h4>
+      </div>
+
+    </div>
+
+    <div class="layout horizontal">
+
+      <div id="inyeccion-homopolimero" class="iron-flex">
+
+        <iron-ajax
+              auto
+              url="../../data/inyeccion_homo.json"
+              last-response="{{data1}}"
+              handle-as="json">
+        </iron-ajax>
+
+        <template is="dom-repeat" id="grado1" items="[[data1]]">
+          <paper-button onclick="backdrop.open()" on-tap="toggleSelection1" raised>[[item.title]]</paper-button>
+        </template>
+
+      </div>
+
+      <div id="inyeccion-impacto" class="iron-flex">
+
+        <iron-ajax
+              auto
+              url="../../data/inyeccion_impacto.json"
+              last-response="{{data2}}"
+              handle-as="json">
+        </iron-ajax>
+
+        <template is="dom-repeat" id="grado2" items="[[data2]]">
+          <paper-button onclick="backdrop2.open()" on-tap="toggleSelection2" raised>[[item.title]]</paper-button>
+        </template>
+
+      </div>
+
+      <div id="inyeccion-aleatorio" class="iron-flex">
+        
+        <iron-ajax
+              auto
+              url="../../data/inyeccion_aleatorio.json"
+              last-response="{{data3}}"
+              handle-as="json">
+        </iron-ajax>
+
+        <template is="dom-repeat" id="grado3" items="[[data3]]">
+          <paper-button onclick="backdrop3.open()" on-tap="toggleSelection3" raised>[[item.title]]</paper-button>
+        </template>
+
+      </div>
+
+      <div id="pelicula-homopolimero" class="iron-flex">
+        
+        <iron-ajax
+              auto
+              url="../../data/pelicula_homo.json"
+              last-response="{{data4}}"
+              handle-as="json">
+        </iron-ajax>
+
+        <template is="dom-repeat" id="grado4" items="[[data4]]">
+          <paper-button onclick="backdrop4.open()" on-tap="toggleSelection4" raised>[[item.title]]</paper-button>
+        </template>
+
+      </div>
+
+      <div id="rafia-homopolimero" class="iron-flex">
+        
+        <iron-ajax
+              auto
+              url="../../data/rafia_homo.json"
+              last-response="{{data5}}"
+              handle-as="json">
+        </iron-ajax>
+
+        <template is="dom-repeat" id="grado5" items="[[data5]]">
+          <paper-button onclick="backdrop5.open()" on-tap="toggleSelection5" raised>[[item.title]]</paper-button>
+        </template>
+
+      </div>
+
+      <div id="fibra-homopolimero" class="iron-flex">
+        
+        <iron-ajax
+              auto
+              url="../../data/fibra_homo.json"
+              last-response="{{data6}}"
+              handle-as="json">
+        </iron-ajax>
+
+        <template is="dom-repeat" id="grado6" items="[[data6]]">
+          <paper-button onclick="backdrop6.open()" on-tap="toggleSelection6" raised>[[item.title]]</paper-button>
+        </template>
+
+      </div>
+
+      <div id="soplado-aleatorio" class="iron-flex">
+        
+        <iron-ajax
+              auto
+              url="../../data/soplado_aleatorio.json"
+              last-response="{{data7}}"
+              handle-as="json">
+        </iron-ajax>
+
+        <template is="dom-repeat" id="grado7" items="[[data7]]">
+          <paper-button onclick="backdrop7.open()" on-tap="toggleSelection7" raised>[[item.title]]</paper-button>
+        </template>
+
+      </div>
+
+    </div>
+
+    <array-selector id="selector1" items="{{data1}}" selected="{{selected}}"></array-selector>
+    <array-selector id="selector2" items="{{data2}}" selected="{{selected2}}"></array-selector>
+    <array-selector id="selector3" items="{{data3}}" selected="{{selected3}}"></array-selector>
+    <array-selector id="selector4" items="{{data4}}" selected="{{selected4}}"></array-selector>
+    <array-selector id="selector5" items="{{data5}}" selected="{{selected5}}"></array-selector>
+    <array-selector id="selector6" items="{{data6}}" selected="{{selected6}}"></array-selector>
+    <array-selector id="selector7" items="{{data7}}" selected="{{selected7}}"></array-selector>
+
+
+
+      <simple-overlay id="backdrop" class="infogrado" with-backdrop>
+        <img src="../../images/refinery.jpg">
+        <paper-progress class="progress" value="100"></paper-progress>
+        <h2>[[selected.title]]</h2>
+        <h4>Rango IF: [[selected.rangoif]]</h4>
+      </simple-overlay>
+
+      <simple-overlay id="backdrop2" class="infogrado" with-backdrop>
+        <img src="../../images/refinery.jpg">
+        <paper-progress class="progress" value="100"></paper-progress>        
+        <h2>[[selected2.title]]</h2>
+        <h4>[[selected2.rangoif]]</h4>
+      </simple-overlay>
+
+      <simple-overlay id="backdrop3" class="infogrado" with-backdrop>
+        <img src="../../images/refinery.jpg">
+        <paper-progress class="progress" value="100"></paper-progress>
+        <h2>[[selected3.title]]</h2>
+        <h4>[[selected3.rangoif]]</h4>
+      </simple-overlay>
+
+      <simple-overlay id="backdrop4" class="infogrado" with-backdrop>
+        <img src="../../images/refinery.jpg">
+        <paper-progress class="progress" value="100"></paper-progress>
+        <h2>[[selected4.title]]</h2>
+        <h4>[[selected4.rangoif]]</h4>
+      </simple-overlay>
+
+      <simple-overlay id="backdrop5" class="infogrado" with-backdrop>
+        <img src="../../images/refinery.jpg">
+        <paper-progress class="progress" value="100"></paper-progress>
+        <h2>[[selected5.title]]</h2>
+        <h4>[[selected5.rangoif]]</h4>
+      </simple-overlay>
+
+      <simple-overlay id="backdrop6" class="infogrado" with-backdrop>
+        <img src="../../images/refinery.jpg">
+        <paper-progress class="progress" value="100"></paper-progress>
+        <h2>[[selected6.title]]</h2>
+        <h4>[[selected6.rangoif]]</h4>
+      </simple-overlay>
+
+      <simple-overlay id="backdrop7" class="infogrado" with-backdrop>
+        <img src="../../images/refinery.jpg">
+        <paper-progress class="progress" value="100"></paper-progress>
+        <h2>[[selected7.title]]</h2>
+        <h4>[[selected7.rangoif]]</h4>
+      </simple-overlay>
+
+    </paper-card>
+
+
+
+
+
+
+
+
+
+      </div>
+    </paper-header-panel>
+
+
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'ciclo-produccion-app',
+
+      properties: {
+        items: {
+          type: Array,
+          notify: true,
+          value: function() {return [];}
+        },
+        testing: {
+          type: Number,
+          value: 2
+        }
+      },
+
+      ready: function(){
+
+        console.log(this.testing)
+
+      },
+
+      toggleSelection1: function(e) {
+        var item = this.$.grado1.itemForElement(e.target);
+        this.$.selector1.select(item);      
+      },
+
+      toggleSelection2: function(e) {
+        var item = this.$.grado2.itemForElement(e.target);
+        var selected2 = this.$.selector2.select(item);
+        return selected2;
+      },
+
+      toggleSelection3: function(e) {
+        var item = this.$.grado3.itemForElement(e.target);
+        var selected3 = this.$.selector3.select(item);
+        return selected3;
+      },
+
+      toggleSelection4: function(e) {
+        var item = this.$.grado4.itemForElement(e.target);
+        var selected4 = this.$.selector4.select(item);
+        return selected4;
+      },
+
+      toggleSelection5: function(e) {
+        var item = this.$.grado5.itemForElement(e.target);
+        var selected5 = this.$.selector5.select(item);
+        return selected5;
+      },
+
+      toggleSelection6: function(e) {
+        var item = this.$.grado6.itemForElement(e.target);
+        var selected6 = this.$.selector6.select(item);
+        return selected6;
+      },
+
+      toggleSelection7: function(e) {
+        var item = this.$.grado7.itemForElement(e.target);
+        var selected7 = this.$.selector7.select(item);
+        return selected7;
+      }
+
+    });
+  </script>
+</dom-module>

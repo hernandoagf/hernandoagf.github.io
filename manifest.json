@@ -1,0 +1,6 @@
+{
+  "name": "ciclo-produccion",
+  "short_name": "ciclo-produccion",
+  "start_url": "/",
+  "display": "standalone"
+}
