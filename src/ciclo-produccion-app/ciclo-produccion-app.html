@@ -11,6 +11,10 @@
 <link rel="import" href="../../bower_components/iron-overlay-behavior/iron-overlay-behavior.html">
 <link rel="import" href="../../bower_components/iron-overlay-behavior/demo/simple-overlay.html">
 <link rel="import" href="../../bower_components/paper-progress/paper-progress.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+
+
 
 
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
@@ -29,7 +33,7 @@
       .fit{
         text-align: center;
       }
-      paper-card{
+      #cardcontainer{
         width: 80%;
         margin-top: 3%;
         padding: 1%;
@@ -82,15 +86,54 @@
       .infogrado{
         width: 50vw;
         height: 70vh;
-        padding: 0;
+        background-color: var(--paper-grey-200);
+      }
+      .overlaycontainer{
+        height: 100%;
+      }
+      .overlayname{
+        width: 30%;
+      }
+      .overlaydetails{
+        width: 70%;
+      }
+      .tituloespec{
+        font-weight: 300;
+        font-size: 20px;
+        padding: 20px;
+        text-align: left;
+      }
+      .espec{
+        font-size: 13px;
+        text-align: left;
+        padding: 0 20px 15px 20px;
+      }
+      .espec div{
+        padding-bottom: 5px;
+      }
+      .ifrangetxt{
+        width: 70px;
       }
       .infogrado img{
         width: 50vw;
         height: 20vh;
       }
+      .infogrado paper-icon-button{
+        float: left;
+        --paper-icon-button-ink-color: white;
+        --paper-icon-button:{
+          color: var(--paper-grey-700);
+        };
+        --paper-icon-button-hover:{
+          color: black;
+        };
+      }
       .progress{
         width: 100%;
         margin-top: 0;
+      }
+      .titulogrado{
+        font-size: 24px;
       }
       #backdrop paper-progress{
         --paper-progress-active-color: var(--paper-light-blue-800);
@@ -122,7 +165,7 @@
       </paper-toolbar>
       <div class="fit">
 
-    <paper-card>
+    <paper-card id="cardcontainer">
 
     <div id="tiposGrados" class="layout horizontal">
       <div style="width: 44%" class="layout vertical">
@@ -272,54 +315,192 @@
 
 
       <simple-overlay id="backdrop" class="infogrado" with-backdrop>
-        <img src="[[selected.img]]">
-        <paper-progress class="progress" value="100"></paper-progress>
-        <h2>[[selected.title]]</h2>
-        <h4>Rango IF: [[selected.rangoif]]</h4>
-        <h4>Etileno: [[selected.etileno]]</h4>
-        <h4>Entrada: [[selected.rutaentrada]]</h4>
+        <div class="overlaycontainer layout horizontal">
+          <div class="overlayname layout vertical">
+            <!--<img src="[[selected.img]]">-->
+            <paper-icon-button icon="arrow-back" onclick="backdrop.close()"></paper-icon-button>
+            <!--<paper-progress class="progress" value="100"></paper-progress>-->
+            <div class="titulogrado">[[selected.title]]</div>
+          </div>
+          <div class="overlaydetails layout vertical">
+            <paper-card>
+              <div class="tituloespec">Especificaciones</div>
+              <div class="espec layout vertical">
+                <div class="ifrange layout horizontal">
+                  <div class="ifrangetxt">Rango IF:</div>
+                  <div class="ifrangeval">[[selected.rangoif]]</div>
+                </div>
+                <div class="ifrange layout horizontal">
+                  <div class="ifrangetxt">Etileno:</div>
+                  <div class="ifrangeval">[[selected.etileno]]</div>
+                </div>
+              </div>
+            </paper-card>
+            <h4>Entrada: [[selected.rutaentrada]]</h4>
+          </div>
+        </div>
       </simple-overlay>
 
       <simple-overlay id="backdrop2" class="infogrado" with-backdrop>
-        <img src="../../images/refinery.jpg">
-        <paper-progress class="progress" value="100"></paper-progress>
-        <h2>[[selected2.title]]</h2>
-        <h4>[[selected2.rangoif]]</h4>
+        <div class="overlaycontainer layout horizontal">
+          <div class="overlayname layout vertical">
+            <!--<img src="[[selected.img]]">-->
+            <paper-icon-button icon="arrow-back" onclick="backdrop2.close()"></paper-icon-button>
+            <!--<paper-progress class="progress" value="100"></paper-progress>-->
+            <div class="titulogrado">[[selected2.title]]</div>
+          </div>
+          <div class="overlaydetails layout vertical">
+            <paper-card>
+              <div class="tituloespec">Especificaciones</div>
+              <div class="espec layout vertical">
+                <div class="ifrange layout horizontal">
+                  <div class="ifrangetxt">Rango IF:</div>
+                  <div class="ifrangeval">[[selected2.rangoif]]</div>
+                </div>
+                <div class="ifrange layout horizontal">
+                  <div class="ifrangetxt">Etileno:</div>
+                  <div class="ifrangeval">[[selected2.etileno]]</div>
+                </div>
+              </div>
+            </paper-card>
+            <h4>Entrada: [[selected2.rutaentrada]]</h4>
+          </div>
+        </div>
       </simple-overlay>
 
       <simple-overlay id="backdrop3" class="infogrado" with-backdrop>
-        <img src="../../images/refinery.jpg">
-        <paper-progress class="progress" value="100"></paper-progress>
-        <h2>[[selected3.title]]</h2>
-        <h4>[[selected3.rangoif]]</h4>
+        <div class="overlaycontainer layout horizontal">
+          <div class="overlayname layout vertical">
+            <!--<img src="[[selected.img]]">-->
+            <paper-icon-button icon="arrow-back" onclick="backdrop3.close()"></paper-icon-button>
+            <!--<paper-progress class="progress" value="100"></paper-progress>-->
+            <div class="titulogrado">[[selected3.title]]</div>
+          </div>
+          <div class="overlaydetails layout vertical">
+            <paper-card>
+              <div class="tituloespec">Especificaciones</div>
+              <div class="espec layout vertical">
+                <div class="ifrange layout horizontal">
+                  <div class="ifrangetxt">Rango IF:</div>
+                  <div class="ifrangeval">[[selected3.rangoif]]</div>
+                </div>
+                <div class="ifrange layout horizontal">
+                  <div class="ifrangetxt">Etileno:</div>
+                  <div class="ifrangeval">[[selected3.etileno]]</div>
+                </div>
+              </div>
+            </paper-card>
+            <h4>Entrada: [[selected3.rutaentrada]]</h4>
+          </div>
+        </div>
       </simple-overlay>
 
       <simple-overlay id="backdrop4" class="infogrado" with-backdrop>
-        <img src="../../images/refinery.jpg">
-        <paper-progress class="progress" value="100"></paper-progress>
-        <h2>[[selected4.title]]</h2>
-        <h4>[[selected4.rangoif]]</h4>
+        <div class="overlaycontainer layout horizontal">
+          <div class="overlayname layout vertical">
+            <!--<img src="[[selected.img]]">-->
+            <paper-icon-button icon="arrow-back" onclick="backdrop4.close()"></paper-icon-button>
+            <!--<paper-progress class="progress" value="100"></paper-progress>-->
+            <div class="titulogrado">[[selected4.title]]</div>
+          </div>
+          <div class="overlaydetails layout vertical">
+            <paper-card>
+              <div class="tituloespec">Especificaciones</div>
+              <div class="espec layout vertical">
+                <div class="ifrange layout horizontal">
+                  <div class="ifrangetxt">Rango IF:</div>
+                  <div class="ifrangeval">[[selected4.rangoif]]</div>
+                </div>
+                <div class="ifrange layout horizontal">
+                  <div class="ifrangetxt">Etileno:</div>
+                  <div class="ifrangeval">[[selected4.etileno]]</div>
+                </div>
+              </div>
+            </paper-card>
+            <h4>Entrada: [[selected4.rutaentrada]]</h4>
+          </div>
+        </div>
       </simple-overlay>
 
       <simple-overlay id="backdrop5" class="infogrado" with-backdrop>
-        <img src="../../images/refinery.jpg">
-        <paper-progress class="progress" value="100"></paper-progress>
-        <h2>[[selected5.title]]</h2>
-        <h4>[[selected5.rangoif]]</h4>
+        <div class="overlaycontainer layout horizontal">
+          <div class="overlayname layout vertical">
+            <!--<img src="[[selected.img]]">-->
+            <paper-icon-button icon="arrow-back" onclick="backdrop5.close()"></paper-icon-button>
+            <!--<paper-progress class="progress" value="100"></paper-progress>-->
+            <div class="titulogrado">[[selected5.title]]</div>
+          </div>
+          <div class="overlaydetails layout vertical">
+            <paper-card>
+              <div class="tituloespec">Especificaciones</div>
+              <div class="espec layout vertical">
+                <div class="ifrange layout horizontal">
+                  <div class="ifrangetxt">Rango IF:</div>
+                  <div class="ifrangeval">[[selected5.rangoif]]</div>
+                </div>
+                <div class="ifrange layout horizontal">
+                  <div class="ifrangetxt">Etileno:</div>
+                  <div class="ifrangeval">[[selected5.etileno]]</div>
+                </div>
+              </div>
+            </paper-card>
+            <h4>Entrada: [[selected5.rutaentrada]]</h4>
+          </div>
+        </div>
       </simple-overlay>
 
       <simple-overlay id="backdrop6" class="infogrado" with-backdrop>
-        <img src="../../images/refinery.jpg">
-        <paper-progress class="progress" value="100"></paper-progress>
-        <h2>[[selected6.title]]</h2>
-        <h4>[[selected6.rangoif]]</h4>
+        <div class="overlaycontainer layout horizontal">
+          <div class="overlayname layout vertical">
+            <!--<img src="[[selected.img]]">-->
+            <paper-icon-button icon="arrow-back" onclick="backdrop6.close()"></paper-icon-button>
+            <!--<paper-progress class="progress" value="100"></paper-progress>-->
+            <div class="titulogrado">[[selected6.title]]</div>
+          </div>
+          <div class="overlaydetails layout vertical">
+            <paper-card>
+              <div class="tituloespec">Especificaciones</div>
+              <div class="espec layout vertical">
+                <div class="ifrange layout horizontal">
+                  <div class="ifrangetxt">Rango IF:</div>
+                  <div class="ifrangeval">[[selected6.rangoif]]</div>
+                </div>
+                <div class="ifrange layout horizontal">
+                  <div class="ifrangetxt">Etileno:</div>
+                  <div class="ifrangeval">[[selected6.etileno]]</div>
+                </div>
+              </div>
+            </paper-card>
+            <h4>Entrada: [[selected6.rutaentrada]]</h4>
+          </div>
+        </div>
       </simple-overlay>
 
       <simple-overlay id="backdrop7" class="infogrado" with-backdrop>
-        <img src="../../images/refinery.jpg">
-        <paper-progress class="progress" value="100"></paper-progress>
-        <h2>[[selected7.title]]</h2>
-        <h4>[[selected7.rangoif]]</h4>
+        <div class="overlaycontainer layout horizontal">
+          <div class="overlayname layout vertical">
+            <!--<img src="[[selected.img]]">-->
+            <paper-icon-button icon="arrow-back" onclick="backdrop7.close()"></paper-icon-button>
+            <!--<paper-progress class="progress" value="100"></paper-progress>-->
+            <div class="titulogrado">[[selected7.title]]</div>
+          </div>
+          <div class="overlaydetails layout vertical">
+            <paper-card>
+              <div class="tituloespec">Especificaciones</div>
+              <div class="espec layout vertical">
+                <div class="ifrange layout horizontal">
+                  <div class="ifrangetxt">Rango IF:</div>
+                  <div class="ifrangeval">[[selected7.rangoif]]</div>
+                </div>
+                <div class="ifrange layout horizontal">
+                  <div class="ifrangetxt">Etileno:</div>
+                  <div class="ifrangeval">[[selected7.etileno]]</div>
+                </div>
+              </div>
+            </paper-card>
+            <h4>Entrada: [[selected7.rutaentrada]]</h4>
+          </div>
+        </div>
       </simple-overlay>
 
     </paper-card>
