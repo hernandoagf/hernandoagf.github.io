@@ -1,16 +1,72 @@
-
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/paper-styles/typography.html">
+<link rel="import" href="../../bower_components/app-layout/app-grid/app-grid-style.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="ciclo-produccion-listagrado.html">
 
 <dom-module id="ciclo-produccion-grado">
 	<template>
-		<style>
-			
+		<style include="app-grid-style">
+			:host {
+				--app-grid-columns: 5;
+        		--app-grid-item-height: 70%;
+			};
+			.app-grid{
+			    width: 80%;
+			    margin-left: 20%;
+			    margin-top: 20px;
+			    margin-bottom: 50px;
+		    }
+		    .item{
+			    margin: 20px;
+			    /*font-size: 20px;*/
+			    color: white;
+			    text-align: left;
+		    }
+		    a{
+		    	color: white;
+		    }
+		    .grado-header{ @apply(--paper-font-title); }
 		</style>
 
+		<ciclo-produccion-listagrado data="{{data}}" testvar="{{testing}}"></ciclo-produccion-listagrado>
+
+        <div class="app-grid" has-aspect-ratio>
+            <template is="dom-repeat" id="grado" items="[[data]]">
+              <div class="item">
+                <a href$="[[_getGradoHref(item)]]">
+	                <paper-card image="../../images/refinery.jpg" style="[[item.col]]" on-tap="changetoolbar">
+	                  <div class="card-content">
+	                    <div class="grado-header">[[item.title]]</div>
+	                  </div>
+	                </paper-card>
+                </a>
+              </div>
+            </template>
+            <array-selector id="selector" items="{{data}}" selected="{{selected}}"></array-selector>
+          </div>
 	</template>	
 
 	<script>
 		Polymer({
 			is: "ciclo-produccion-grado",
+
+		    properties: {
+		      grado: {
+		      	type: Object,
+		      	notify: true
+		      }
+			},
+
+			_getGradoHref: function(item){
+				return ['/grado', item.name].join('/');
+			},
+
+		    changetoolbar: function(){
+		    	document.getElementById("toolbar").style.backgroundColor = "white";
+				document.getElementById("toolbar").style.color = "#676767";
+		    }
 		})
 	</script>
 </dom-module>

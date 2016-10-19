@@ -1,587 +1,114 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
 <link rel="import" href="../../bower_components/paper-styles/color.html">
 <link rel="import" href="../../bower_components/paper-styles/typography.html">
-<link rel="import" href="../../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../../bower_components/paper-card/paper-card.html">
-<link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../../bower_components/paper-header-panel/paper-header-panel.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../../bower_components/iron-overlay-behavior/iron-overlay-behavior.html">
-<link rel="import" href="../../bower_components/iron-overlay-behavior/demo/simple-overlay.html">
-<link rel="import" href="../../bower_components/paper-progress/paper-progress.html">
-<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
-<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/paper-styles/typography.html">
+<link rel="import" href="../../bower_components/app-layout/app-grid/app-grid-style.html">
+<link rel="import" href="../../bower_components/app-layout/helpers/helpers.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../ciclo-produccion-elements/ciclo-produccion-grado.html">
+<link rel="import" href="../ciclo-produccion-elements/ciclo-produccion-detalle.html">
+<link rel="import" href="../ciclo-produccion-elements/ciclo-produccion-listagrado.html">
 
-
-<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 
 <dom-module id="ciclo-produccion-app">
   <template>
-    <style include="iron-flex iron-flex-alignment">
+    <style include="iron-flex iron-flex-alignment app-grid-style">
       :host {
-        height: 100%;
+        height: 100vh;
         display: block;
         background-color: var(--paper-grey-200);
       }
       paper-toolbar{
         background-color: var(--paper-red-700);
       }
+      iron-pages{
+        height: 100%;
+      }
+      ciclo-produccion-detalle{
+        height: 100%;
+      }
       .fit{
         text-align: center;
       }
-      #cardcontainer{
-        width: 80%;
-        margin-top: 3%;
-        padding: 1%;
+      .app-grid{
+          width: 80%;
+          margin-left: 20%;
+          margin-top: 20px;
+          margin-bottom: 50px;
       }
-      #tiposGrados h4{
-        margin: 1vh 0 0 0;
+      .item{
+        margin: 20px;
+        /*font-size: 20px;*/
+        text-align: left;
+        cursor: pointer;
       }
-      #tiposInyeccion{
-        padding-left: 4%;
-      }
-      #tiposInyeccion div{
-        width: 33%;
-      }
-      .layout.horizontal{
-
-      }
-      .iron-flex{
-        @apply(--layout-vertical);
-        @apply(--layout-around-justified);
-        width: 14%;
-        padding-left: 4%;
-      }
-      paper-button{
-        background-color: var(--paper-purple-700);
+      .grado-header{
+        @apply(--paper-font-title);
         color: white;
-        width: 50%;
-        margin: 5% 2% 5% 2%;
       }
-      #inyeccion-homopolimero paper-button{
-        background-color: var(--paper-light-blue-800);
+      #detallegrado {
+        background-color: var(--paper-grey-300);
       }
-      #inyeccion-impacto paper-button{
-        background-color: var(--paper-deep-purple-800);
+      .maininfogrado{
+        width: 25%;
       }
-      #inyeccion-aleatorio paper-button{
-        background-color: var(--paper-yellow-800);
-      }
-      #pelicula-homopolimero paper-button{
-        background-color: var(--paper-light-green-800);
-      }
-      #rafia-homopolimero paper-button{
-        background-color: var(--paper-pink-900);
-      }
-      #fibra-homopolimero paper-button{
-        background-color: var(--paper-orange-800);
-      }
-      #soplado-aleatorio paper-button{
-        background-color: var(--paper-blue-800);
-      }
-      .infogrado{
-        width: 50vw;
-        height: 70vh;
-        background-color: var(--paper-grey-200);
-      }
-      .overlaycontainer{
-        height: 100%;
-      }
-      .overlayname{
-        width: 30%;
-      }
-      .overlaydetails{
-        width: 70%;
-      }
-      .tituloespec{
-        font-weight: 300;
-        font-size: 20px;
-        padding: 20px;
-        text-align: left;
-      }
-      .espec{
-        font-size: 13px;
-        text-align: left;
-        padding: 0 20px 15px 20px;
-      }
-      .espec div{
-        padding-bottom: 5px;
-      }
-      .ifrangetxt{
-        width: 70px;
-      }
-      .infogrado img{
-        width: 50vw;
-        height: 20vh;
-      }
-      .infogrado paper-icon-button{
-        float: left;
-        --paper-icon-button-ink-color: white;
-        --paper-icon-button:{
-          color: var(--paper-grey-700);
-        };
-        --paper-icon-button-hover:{
-          color: black;
-        };
-      }
-      .progress{
-        width: 100%;
-        margin-top: 0;
-      }
-      .titulogrado{
-        font-size: 24px;
-      }
-      #backdrop paper-progress{
-        --paper-progress-active-color: var(--paper-light-blue-800);
-      }
-      #backdrop2 paper-progress{
-        --paper-progress-active-color: var(--paper-deep-purple-800);
-      }
-      #backdrop3 paper-progress{
-        --paper-progress-active-color: var(--paper-yellow-800);
-      }
-      #backdrop4 paper-progress{
-        --paper-progress-active-color: var(--paper-light-green-800);
-      }
-      #backdrop5 paper-progress{
-        --paper-progress-active-color: var(--paper-pink-900);
-      }
-      #backdrop6 paper-progress{
-        --paper-progress-active-color: var(--paper-orange-800);
-      }
-      #backdrop7 paper-progress{
-        --paper-progress-active-color: var(--paper-blue-800);
+      .grado-name{
+        @apply(--paper-font-display1);
+        font-size: 30px;
+        color: white;
       }
     </style>
 
+    <app-location route="{{route}}"></app-location>
+
+    <app-route
+      route="{{route}}"
+      pattern="/:page"
+      data="{{routeData}}"
+      tail="{{subroute}}"></app-route>
+
+    <ciclo-produccion-listagrado route="{{subroute}}" gradoselec="{{gradoselec}}"></ciclo-produccion-listagrado>
+
     <!-- paper-header-panel must have an explicit height -->
     <paper-header-panel class="flex">
-      <paper-toolbar>
+      <paper-toolbar id="toolbar">
+        <img src="../../images/ppv.png" width="99" height="64">
         <span class="title">Propilven</span>
       </paper-toolbar>
       <div class="fit">
-
-    <paper-card id="cardcontainer">
-
-    <div id="tiposGrados" class="layout horizontal">
-      <div style="width: 44%" class="layout vertical">
-        <h4 style="padding-left: 4%">INYECCIÓN</h4>
-        <div id="tiposInyeccion" class="layout horizontal">
-          <div><h4>HOMOPOLÍMERO</h4></div>
-          <div><h4>IMPACTO</h4></div>
-          <div style="padding-left: 4%"><h4>ALEATORIO</h4></div>
-        </div>
-      </div>
-      <div style="width: 14%" class="layout vertical">
-        <h4 style="padding-left: 4%">PELÍCULA</h4>
-        <h4 style="padding-left: 8%">HOMOPOLÍMERO</h4>
-      </div>
-      <div style="width: 14%" class="layout vertical">
-        <h4 style="padding-left: 8%">RAFIA</h4>
-        <h4 style="padding-left: 12%">HOMOPOLÍMERO</h4>
-      </div>
-      <div style="width: 14%" class="layout vertical">
-        <h4 style="padding-left: 8%">FIBRA</h4>
-        <h4 style="padding-left: 12%">HOMOPOLÍMERO</h4>
-      </div>
-      <div style="width: 14%" class="layout vertical">
-        <h4 style="padding-left: 8%">SOPLADO</h4>
-        <h4 style="padding-left: 12%">ALEATOREO</h4>
-      </div>
-
-    </div>
-
-    <div class="layout horizontal">
-
-      <div id="inyeccion-homopolimero" class="iron-flex">
-
-        <iron-ajax
-              auto
-              url="../../data/inyeccion_homo.json"
-              last-response="{{data1}}"
-              handle-as="json">
-        </iron-ajax>
-
-        <template is="dom-repeat" id="grado1" items="[[data1]]">
-          <paper-button onclick="backdrop.open()" on-tap="toggleSelection1" raised>[[item.title]]</paper-button>
-        </template>
-
-      </div>
-
-      <div id="inyeccion-impacto" class="iron-flex">
-
-        <iron-ajax
-              auto
-              url="../../data/inyeccion_impacto.json"
-              last-response="{{data2}}"
-              handle-as="json">
-        </iron-ajax>
-
-        <template is="dom-repeat" id="grado2" items="[[data2]]">
-          <paper-button onclick="backdrop2.open()" on-tap="toggleSelection2" raised>[[item.title]]</paper-button>
-        </template>
-
-      </div>
-
-      <div id="inyeccion-aleatorio" class="iron-flex">
         
-        <iron-ajax
-              auto
-              url="../../data/inyeccion_aleatorio.json"
-              last-response="{{data3}}"
-              handle-as="json">
-        </iron-ajax>
+        <iron-pages selected="[[routeData.page]]" attr-for-selected="name">
 
-        <template is="dom-repeat" id="grado3" items="[[data3]]">
-          <paper-button onclick="backdrop3.open()" on-tap="toggleSelection3" raised>[[item.title]]</paper-button>
-        </template>
+          <ciclo-produccion-grado name="" grado={{grado}}></ciclo-produccion-grado>
+          <ciclo-produccion-detalle name="grado" route="[[subroute]]" gradoselec={{gradoselec}}></ciclo-produccion-detalle>
 
-      </div>
-
-      <div id="pelicula-homopolimero" class="iron-flex">
-        
-        <iron-ajax
-              auto
-              url="../../data/pelicula_homo.json"
-              last-response="{{data4}}"
-              handle-as="json">
-        </iron-ajax>
-
-        <template is="dom-repeat" id="grado4" items="[[data4]]">
-          <paper-button onclick="backdrop4.open()" on-tap="toggleSelection4" raised>[[item.title]]</paper-button>
-        </template>
-
-      </div>
-
-      <div id="rafia-homopolimero" class="iron-flex">
-        
-        <iron-ajax
-              auto
-              url="../../data/rafia_homo.json"
-              last-response="{{data5}}"
-              handle-as="json">
-        </iron-ajax>
-
-        <template is="dom-repeat" id="grado5" items="[[data5]]">
-          <paper-button onclick="backdrop5.open()" on-tap="toggleSelection5" raised>[[item.title]]</paper-button>
-        </template>
-
-      </div>
-
-      <div id="fibra-homopolimero" class="iron-flex">
-        
-        <iron-ajax
-              auto
-              url="../../data/fibra_homo.json"
-              last-response="{{data6}}"
-              handle-as="json">
-        </iron-ajax>
-
-        <template is="dom-repeat" id="grado6" items="[[data6]]">
-          <paper-button onclick="backdrop6.open()" on-tap="toggleSelection6" raised>[[item.title]]</paper-button>
-        </template>
-
-      </div>
-
-      <div id="soplado-aleatorio" class="iron-flex">
-        
-        <iron-ajax
-              auto
-              url="../../data/soplado_aleatorio.json"
-              last-response="{{data7}}"
-              handle-as="json">
-        </iron-ajax>
-
-        <template is="dom-repeat" id="grado7" items="[[data7]]">
-          <paper-button onclick="backdrop7.open()" on-tap="toggleSelection7" raised>[[item.title]]</paper-button>
-        </template>
-
-      </div>
-
-    </div>
-
-    <array-selector id="selector1" items="{{data1}}" selected="{{selected}}"></array-selector>
-    <array-selector id="selector2" items="{{data2}}" selected="{{selected2}}"></array-selector>
-    <array-selector id="selector3" items="{{data3}}" selected="{{selected3}}"></array-selector>
-    <array-selector id="selector4" items="{{data4}}" selected="{{selected4}}"></array-selector>
-    <array-selector id="selector5" items="{{data5}}" selected="{{selected5}}"></array-selector>
-    <array-selector id="selector6" items="{{data6}}" selected="{{selected6}}"></array-selector>
-    <array-selector id="selector7" items="{{data7}}" selected="{{selected7}}"></array-selector>
-
-
-
-      <simple-overlay id="backdrop" class="infogrado" with-backdrop>
-        <div class="overlaycontainer layout horizontal">
-          <div class="overlayname layout vertical">
-            <!--<img src="[[selected.img]]">-->
-            <paper-icon-button icon="arrow-back" onclick="backdrop.close()"></paper-icon-button>
-            <!--<paper-progress class="progress" value="100"></paper-progress>-->
-            <div class="titulogrado">[[selected.title]]</div>
-          </div>
-          <div class="overlaydetails layout vertical">
-            <paper-card>
-              <div class="tituloespec">Especificaciones</div>
-              <div class="espec layout vertical">
-                <div class="ifrange layout horizontal">
-                  <div class="ifrangetxt">Rango IF:</div>
-                  <div class="ifrangeval">[[selected.rangoif]]</div>
-                </div>
-                <div class="ifrange layout horizontal">
-                  <div class="ifrangetxt">Etileno:</div>
-                  <div class="ifrangeval">[[selected.etileno]]</div>
-                </div>
-              </div>
-            </paper-card>
-            <h4>Entrada: [[selected.rutaentrada]]</h4>
-          </div>
-        </div>
-      </simple-overlay>
-
-      <simple-overlay id="backdrop2" class="infogrado" with-backdrop>
-        <div class="overlaycontainer layout horizontal">
-          <div class="overlayname layout vertical">
-            <!--<img src="[[selected.img]]">-->
-            <paper-icon-button icon="arrow-back" onclick="backdrop2.close()"></paper-icon-button>
-            <!--<paper-progress class="progress" value="100"></paper-progress>-->
-            <div class="titulogrado">[[selected2.title]]</div>
-          </div>
-          <div class="overlaydetails layout vertical">
-            <paper-card>
-              <div class="tituloespec">Especificaciones</div>
-              <div class="espec layout vertical">
-                <div class="ifrange layout horizontal">
-                  <div class="ifrangetxt">Rango IF:</div>
-                  <div class="ifrangeval">[[selected2.rangoif]]</div>
-                </div>
-                <div class="ifrange layout horizontal">
-                  <div class="ifrangetxt">Etileno:</div>
-                  <div class="ifrangeval">[[selected2.etileno]]</div>
-                </div>
-              </div>
-            </paper-card>
-            <h4>Entrada: [[selected2.rutaentrada]]</h4>
-          </div>
-        </div>
-      </simple-overlay>
-
-      <simple-overlay id="backdrop3" class="infogrado" with-backdrop>
-        <div class="overlaycontainer layout horizontal">
-          <div class="overlayname layout vertical">
-            <!--<img src="[[selected.img]]">-->
-            <paper-icon-button icon="arrow-back" onclick="backdrop3.close()"></paper-icon-button>
-            <!--<paper-progress class="progress" value="100"></paper-progress>-->
-            <div class="titulogrado">[[selected3.title]]</div>
-          </div>
-          <div class="overlaydetails layout vertical">
-            <paper-card>
-              <div class="tituloespec">Especificaciones</div>
-              <div class="espec layout vertical">
-                <div class="ifrange layout horizontal">
-                  <div class="ifrangetxt">Rango IF:</div>
-                  <div class="ifrangeval">[[selected3.rangoif]]</div>
-                </div>
-                <div class="ifrange layout horizontal">
-                  <div class="ifrangetxt">Etileno:</div>
-                  <div class="ifrangeval">[[selected3.etileno]]</div>
-                </div>
-              </div>
-            </paper-card>
-            <h4>Entrada: [[selected3.rutaentrada]]</h4>
-          </div>
-        </div>
-      </simple-overlay>
-
-      <simple-overlay id="backdrop4" class="infogrado" with-backdrop>
-        <div class="overlaycontainer layout horizontal">
-          <div class="overlayname layout vertical">
-            <!--<img src="[[selected.img]]">-->
-            <paper-icon-button icon="arrow-back" onclick="backdrop4.close()"></paper-icon-button>
-            <!--<paper-progress class="progress" value="100"></paper-progress>-->
-            <div class="titulogrado">[[selected4.title]]</div>
-          </div>
-          <div class="overlaydetails layout vertical">
-            <paper-card>
-              <div class="tituloespec">Especificaciones</div>
-              <div class="espec layout vertical">
-                <div class="ifrange layout horizontal">
-                  <div class="ifrangetxt">Rango IF:</div>
-                  <div class="ifrangeval">[[selected4.rangoif]]</div>
-                </div>
-                <div class="ifrange layout horizontal">
-                  <div class="ifrangetxt">Etileno:</div>
-                  <div class="ifrangeval">[[selected4.etileno]]</div>
-                </div>
-              </div>
-            </paper-card>
-            <h4>Entrada: [[selected4.rutaentrada]]</h4>
-          </div>
-        </div>
-      </simple-overlay>
-
-      <simple-overlay id="backdrop5" class="infogrado" with-backdrop>
-        <div class="overlaycontainer layout horizontal">
-          <div class="overlayname layout vertical">
-            <!--<img src="[[selected.img]]">-->
-            <paper-icon-button icon="arrow-back" onclick="backdrop5.close()"></paper-icon-button>
-            <!--<paper-progress class="progress" value="100"></paper-progress>-->
-            <div class="titulogrado">[[selected5.title]]</div>
-          </div>
-          <div class="overlaydetails layout vertical">
-            <paper-card>
-              <div class="tituloespec">Especificaciones</div>
-              <div class="espec layout vertical">
-                <div class="ifrange layout horizontal">
-                  <div class="ifrangetxt">Rango IF:</div>
-                  <div class="ifrangeval">[[selected5.rangoif]]</div>
-                </div>
-                <div class="ifrange layout horizontal">
-                  <div class="ifrangetxt">Etileno:</div>
-                  <div class="ifrangeval">[[selected5.etileno]]</div>
-                </div>
-              </div>
-            </paper-card>
-            <h4>Entrada: [[selected5.rutaentrada]]</h4>
-          </div>
-        </div>
-      </simple-overlay>
-
-      <simple-overlay id="backdrop6" class="infogrado" with-backdrop>
-        <div class="overlaycontainer layout horizontal">
-          <div class="overlayname layout vertical">
-            <!--<img src="[[selected.img]]">-->
-            <paper-icon-button icon="arrow-back" onclick="backdrop6.close()"></paper-icon-button>
-            <!--<paper-progress class="progress" value="100"></paper-progress>-->
-            <div class="titulogrado">[[selected6.title]]</div>
-          </div>
-          <div class="overlaydetails layout vertical">
-            <paper-card>
-              <div class="tituloespec">Especificaciones</div>
-              <div class="espec layout vertical">
-                <div class="ifrange layout horizontal">
-                  <div class="ifrangetxt">Rango IF:</div>
-                  <div class="ifrangeval">[[selected6.rangoif]]</div>
-                </div>
-                <div class="ifrange layout horizontal">
-                  <div class="ifrangetxt">Etileno:</div>
-                  <div class="ifrangeval">[[selected6.etileno]]</div>
-                </div>
-              </div>
-            </paper-card>
-            <h4>Entrada: [[selected6.rutaentrada]]</h4>
-          </div>
-        </div>
-      </simple-overlay>
-
-      <simple-overlay id="backdrop7" class="infogrado" with-backdrop>
-        <div class="overlaycontainer layout horizontal">
-          <div class="overlayname layout vertical">
-            <!--<img src="[[selected.img]]">-->
-            <paper-icon-button icon="arrow-back" onclick="backdrop7.close()"></paper-icon-button>
-            <!--<paper-progress class="progress" value="100"></paper-progress>-->
-            <div class="titulogrado">[[selected7.title]]</div>
-          </div>
-          <div class="overlaydetails layout vertical">
-            <paper-card>
-              <div class="tituloespec">Especificaciones</div>
-              <div class="espec layout vertical">
-                <div class="ifrange layout horizontal">
-                  <div class="ifrangetxt">Rango IF:</div>
-                  <div class="ifrangeval">[[selected7.rangoif]]</div>
-                </div>
-                <div class="ifrange layout horizontal">
-                  <div class="ifrangetxt">Etileno:</div>
-                  <div class="ifrangeval">[[selected7.etileno]]</div>
-                </div>
-              </div>
-            </paper-card>
-            <h4>Entrada: [[selected7.rutaentrada]]</h4>
-          </div>
-        </div>
-      </simple-overlay>
-
-    </paper-card>
-
-
-
-
-
-
-
-
-
+        </iron-pages>
       </div>
     </paper-header-panel>
-
-
-
   </template>
 
   <script>
     Polymer({
-
       is: 'ciclo-produccion-app',
 
-      properties: {
-        items: {
-          type: Array,
-          notify: true,
-          value: function() {return [];}
-        },
-        testing: {
-          type: Number,
-          value: 2
-        }
-      },
+      /*observers: [
+        '_routePageChanged(routeData.page)'
+      ],
 
-      ready: function(){
-
-        console.log(this.testing)
-
-      },
-
-      toggleSelection1: function(e) {
-        var item = this.$.grado1.itemForElement(e.target);
-        this.$.selector1.select(item);      
-      },
-
-      toggleSelection2: function(e) {
-        var item = this.$.grado2.itemForElement(e.target);
-        var selected2 = this.$.selector2.select(item);
-        return selected2;
-      },
-
-      toggleSelection3: function(e) {
-        var item = this.$.grado3.itemForElement(e.target);
-        var selected3 = this.$.selector3.select(item);
-        return selected3;
-      },
-
-      toggleSelection4: function(e) {
-        var item = this.$.grado4.itemForElement(e.target);
-        var selected4 = this.$.selector4.select(item);
-        return selected4;
-      },
-
-      toggleSelection5: function(e) {
-        var item = this.$.grado5.itemForElement(e.target);
-        var selected5 = this.$.selector5.select(item);
-        return selected5;
-      },
-
-      toggleSelection6: function(e) {
-        var item = this.$.grado6.itemForElement(e.target);
-        var selected6 = this.$.selector6.select(item);
-        return selected6;
-      },
-
-      toggleSelection7: function(e) {
-        var item = this.$.grado7.itemForElement(e.target);
-        var selected7 = this.$.selector7.select(item);
-        return selected7;
-      }
-
-    });
+      _routePageChanged: function(page) {
+        this.page = page || '';
+        // Scroll to the top of the page on every *route* change. Use `Polymer.AppLayout.scroll`
+        // with `behavior: 'silent'` to disable header scroll effects during the scroll.
+        Polymer.AppLayout.scroll({ top: 0, behavior: 'silent' });
+      },*/
+    })
   </script>
 </dom-module>
