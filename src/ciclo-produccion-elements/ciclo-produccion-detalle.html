@@ -1,0 +1,226 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" 
+	href="../../bower_components/iron-scroll-target-behavior/iron-scroll-target-behavior.html">
+<link rel="import" href="ciclo-produccion-listagrado.html">
+<link rel="import" href="ciclo-produccion-condiciones.html">
+
+<dom-module id="ciclo-produccion-detalle">
+	<template>
+		<style>
+			#grado_detalle{
+				height: 100%;
+				overflow: hidden;
+			}
+			#leftpanel{
+				width: 30vw;
+				text-align: center;
+			}
+			#leftpanel-bar{
+				background-image: linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0,0));
+				height: 50px;
+			}
+			.panel-header{
+				color: white;
+				margin: 10px;
+			}
+			.panel-header div{
+				@apply(--layout-flex);
+			}
+			#btnback paper-icon-button{
+				float: left;
+			}
+			paper-icon-button.white{
+				color: white;
+			}
+			#panel-title{
+				@apply(--paper-font-display1);
+				padding-top: 5px;
+			}
+			#gradocontent{
+				padding: 30px 0 0 20px;
+				overflow: auto;
+			}
+			#gradocards{
+				width: 80%;
+				padding-left: 10%;
+			}
+			#gradocards paper-card{
+				margin-bottom: 20px;
+			}
+			.cardtitle{
+				margin: 10px 20px 10px 20px;
+				@apply(--paper-font-title);
+				font-weight: 300;
+				text-align: left;
+			}
+			.especcont{
+				margin: 10px 20px 10px 20px;
+			}
+			#especcontrow1 div{
+				@apply(--layout-horizontal);
+				padding: 5px 0 5px 0;
+			}
+			#especcontrow2 div{
+				@apply(--layout-horizontal);
+				padding: 5px 0 5px 0;
+			}
+			#especif{
+				width: 50%;
+			}
+			#especetileno{
+				width: 50%;
+			}
+			#especreceta{
+				width: 50%;
+			}
+			.proptitle{
+				width: 30%;
+			}
+			.propprop{
+				width: 80%;
+			}
+			#rutas{
+				@apply(--layout-justified);
+			}
+			#rutaentradacard{
+				margin-right: 10px;
+			}
+			#rutasalidacard{
+				margin-left: 10px;
+			}
+			.cardruta{
+				padding: 5px 0 5px 0;
+				text-align: left;
+			}
+			.paper-item-link {
+			    color: inherit;
+				text-decoration: none;
+			}
+		</style>
+
+	    <app-route
+	        route="[[route]]"
+	        pattern="/:item"
+	        data="{{routeData}}"></app-route>
+
+
+		<ciclo-produccion-listagrado data="{{data}}"></ciclo-produccion-listagrado>
+
+		<div id="grado_detalle" class="container layout horizontal">
+
+			<paper-card id="leftpanel" style="[[gradoselec.col]]" image="[[gradoselec.img]]" elevation="0">
+				<div id="leftpanel-bar"></div>
+				<div class="panel-header layout horizontal">
+					<div id="btnback">
+						<a href="/">
+							<paper-icon-button icon="arrow-back" class="white" on-tap="changetoolbarback"></paper-icon-button>
+						</a>
+					</div>
+					<div id="panel-title">[[gradoselec.title]]</div>
+					<div></div>
+				</div>
+			</paper-card>
+
+			<div id="gradocontent" class="flex">
+				<div id="gradocards" class="layout vertical">
+
+					<paper-card id="especcard">
+						<div class="cardtitle">Especificaciones</div>
+						<div class="especcont layout vertical">
+							<div id="especcontrow1" class="layout horizontal">
+								<div id="especif">
+									<div class="proptitle">Rango IF:</div>
+									<div class="flex">[[gradoselec.rangoif]]</div>
+								</div>
+								<div id="especetileno">
+									<div class="proptitle">Etileno:</div>
+									<div class="flex">[[gradoselec.etileno]]</div>
+								</div>
+							</div>
+							<div id="especcontrow2" class="layout horizontal">
+								<div id="especreceta">
+									<div class="proptitle">Receta:</div>
+									<div class="flex">[[gradoselec.receta]]</div>
+								</div>
+							</div>
+						</div>
+					</paper-card>
+
+					<div id="rutas" class="layout horizontal">
+						<paper-card id="rutaentradacard" class="flex">
+							<div class="cardtitle">Ruta entrada</div>
+							<paper-listbox>
+								<template is="dom-repeat" id="domrutaentrada" items="{{gradoselec.rutaentrada}}">
+									<a class="paper-item-link" href$="[[_replaceHyphens(item)]]" tabindex="-1">
+										<paper-item>[[item]]</paper-item>
+									</a>
+								</template>
+							</paper-listbox>
+						</paper-card>
+
+						<paper-card id="rutasalidacard" class="flex">
+							<div class="cardtitle">Ruta salida</div>
+							<paper-listbox>
+								<template is="dom-repeat" id="domrutasalida" items="{{gradoselec.rutasalida}}">
+									<a class="paper-item-link" href$="[[_replaceHyphens(item)]]" tabindex="-1">
+										<paper-item>[[item]]</paper-item>
+									</a>
+								</template>
+							</paper-listbox>
+						</paper-card>
+					</div>
+
+					<ciclo-produccion-condiciones gradoselec={{gradoselec}}></ciclo-produccion-condiciones>
+
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<script>
+		Polymer({
+			is: "ciclo-produccion-detalle",
+
+			properties: {
+
+				item: Object,
+
+		        route: {
+		        	type: Object,
+		        	observer: '_routeChanged'
+		        },
+
+		        routeData: Object,
+
+				gradoselec: Object,
+
+		    },
+
+		    _routeChanged: function(){
+				for (var i = this.data.length - 1; i >= 0; i--) {
+					if (this.data[i].name == this.routeData.item) {
+						this.gradoselec = this.data[i];
+						var newTitle = this.gradoselec.title.replace(/-/g, "");
+					}
+				}
+		    },
+
+		    _replaceHyphens: function(item){
+				var newItem = item.replace(/-/g, "");
+				var newerItem = newItem.replace(/ /g, "");
+				var finalItem = newerItem.replace(/Peróxido/g, "");
+				return ['/grado', finalItem].join('/');
+		    },
+
+		    changetoolbarback: function(){
+		    	document.getElementById("toolbar").style.backgroundColor = "#d32f2f";
+				document.getElementById("toolbar").style.color = "white";
+		    }
+		})
+	</script>
+</dom-module>

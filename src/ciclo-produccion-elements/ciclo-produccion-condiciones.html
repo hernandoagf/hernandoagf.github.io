@@ -1,0 +1,302 @@
+<link rel="import" href="../../bower_components/neon-animation/neon-animated-pages.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/slide-from-right-animation.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/slide-left-animation.html">
+
+
+<dom-module id="ciclo-produccion-condiciones">
+	<template>
+		<style>
+			paper-card{
+				width: 100%;
+				margin-bottom: 20px;
+			}
+			.cardtitle{
+				margin: 10px 20px 10px 20px;
+				@apply(--paper-font-title);
+				font-weight: 300;
+				text-align: left;
+			}
+			ul{
+				list-style-type: none;
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+			li{
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+			.ul-heading{
+				color: black;
+				opacity: 0.54;
+			}
+			.ul-row{
+				color: black;
+				opacity: 0.87;
+			}
+			li:hover{
+				background-color: #EEEEEE;
+			}
+			li div{
+				padding-left: 35px;
+				padding-right: 35px;
+			}
+			.card-footer{
+				text-align: right;
+				padding-right: 15px;
+			}
+		</style>
+
+		<paper-card>				
+			<div class="cardtitle">Condiciones de operación para el D-201</div>
+			<ul>
+				<li class="ul-heading layout horizontal">
+					<div class="flex">Parámetro</div>
+					<div class="flex">Unidad</div>
+					<div class="flex">Valor</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">IF</div>
+					<div class="flex">g/10min</div>
+					<div class="flex">[[gradoselec.D201.if]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">TIC-210</div>
+					<div class="flex">ºC</div>
+					<div class="flex">[[gradoselec.D201.TIC210]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">PR-210</div>
+					<div class="flex">kg/cm²</div>
+					<div class="flex">[[gradoselec.D201.PR210]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">LRC-211</div>
+					<div class="flex">%</div>
+					<div class="flex">[[gradoselec.D201.LRC211]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">FI-288</div>
+					<div class="flex">Nm³/h</div>
+					<div class="flex">[[gradoselec.D201.FI288]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">PIC-281</div>
+					<div class="flex">kg/cm²</div>
+					<div class="flex">[[gradoselec.D201.PIC281]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">SC1</div>
+					<div class="flex">g/L</div>
+					<div class="flex">[[gradoselec.D201.SC1]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">Conc. C₂⁼</div>
+					<div class="flex">% mol</div>
+					<div class="flex">[[gradoselec.D201.CONCC2]]</div>
+				</li>
+			</ul>
+		</paper-card>
+
+		<paper-card>
+			<div class="cardtitle">Condiciones de operación para el D-202</div>
+			<ul>
+				<li class="ul-heading layout horizontal">
+					<div class="flex">Parámetro</div>
+					<div class="flex">Unidad</div>
+					<div class="flex">Valor</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">IF</div>
+					<div class="flex">g/10min</div>
+					<div class="flex">[[gradoselec.D202.if]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">FIC-229</div>
+					<div class="flex">Nm³/h</div>
+					<div class="flex">[[gradoselec.D202.FIC229]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">SC2</div>
+					<div class="flex">g/L</div>
+					<div class="flex">[[gradoselec.D202.SC2]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">TRC-220</div>
+					<div class="flex">ºC</div>
+					<div class="flex">[[gradoselec.D202.TRC220]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">PR-220</div>
+					<div class="flex">kg/cm²</div>
+					<div class="flex">[[gradoselec.D202.PR220]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">LIC-221</div>
+					<div class="flex">%</div>
+					<div class="flex">[[gradoselec.D202.LIC221]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">Conc. C₂⁼</div>
+					<div class="flex">% mol</div>
+					<div class="flex">[[gradoselec.D202.CONCC2]]</div>
+				</li>
+			</ul>
+		</paper-card>
+
+		<paper-card>
+			<div class="cardtitle">Condiciones de operación para el D-203</div>
+			<ul>
+				<li class="ul-heading layout horizontal">
+					<div class="flex">Parámetro</div>
+					<div class="flex">Unidad</div>
+					<div class="flex">Valor</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">IF</div>
+					<div class="flex">g/10min</div>
+					<div class="flex">[[gradoselec.D203.if]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">FV-289</div>
+					<div class="flex">%</div>
+					<div class="flex">[[gradoselec.D203.FV289]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">FV-282</div>
+					<div class="flex">%</div>
+					<div class="flex">[[gradoselec.D203.FV282]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">PRC-230</div>
+					<div class="flex">kg/cm²</div>
+					<div class="flex">[[gradoselec.D203.PRC230]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">LRC-230</div>
+					<div class="flex">%</div>
+					<div class="flex">[[gradoselec.D203.LRC230]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">TRC-233</div>
+					<div class="flex">ºC</div>
+					<div class="flex">[[gradoselec.D203.TRC233]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">PIC-280</div>
+					<div class="flex">kg/cm²</div>
+					<div class="flex">[[gradoselec.D203.PIC280]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">SIC-232</div>
+					<div class="flex">rpm</div>
+					<div class="flex">[[gradoselec.D203.SIC232]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">Conc. C₂⁼</div>
+					<div class="flex">% mol</div>
+					<div class="flex">[[gradoselec.D203.CONCC2]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">FI-287</div>
+					<div class="flex">Nm³/h</div>
+					<div class="flex">[[gradoselec.D203.FI287]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">PV-282B</div>
+					<div class="flex">%</div>
+					<div class="flex">[[gradoselec.D203.PV282B]]</div>
+				</li>
+			</ul>
+		</paper-card>
+
+		<paper-card>
+			<div class="cardtitle">Condiciones de operación para el D-204</div>
+			<ul>
+				<li class="ul-heading layout horizontal">
+					<div class="flex">Parámetro</div>
+					<div class="flex">Unidad</div>
+					<div class="flex">Valor</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">IF</div>
+					<div class="flex">g/10min</div>
+					<div class="flex">[[gradoselec.D204.if]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">C-208</div>
+					<div class="flex">% Carga</div>
+					<div class="flex">[[gradoselec.D204.C208]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">FIC-243</div>
+					<div class="flex">kg/h</div>
+					<div class="flex">[[gradoselec.D204.FIC243]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">FIC-243B</div>
+					<div class="flex">kg/h</div>
+					<div class="flex">[[gradoselec.D204.FIC243B]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">FIC-261</div>
+					<div class="flex">Nm³/h</div>
+					<div class="flex">[[gradoselec.D204.FIC261]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">FIC-268</div>
+					<div class="flex">Nm³/h</div>
+					<div class="flex">[[gradoselec.D204.FIC268]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">PI-240</div>
+					<div class="flex">kg/cm²</div>
+					<div class="flex">[[gradoselec.D204.PI240]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">LRC-240</div>
+					<div class="flex">%</div>
+					<div class="flex">[[gradoselec.D204.LRC240]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">TRC-243</div>
+					<div class="flex">%</div>
+					<div class="flex">[[gradoselec.D204.TRC243]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">FIC-245</div>
+					<div class="flex">m³/h</div>
+					<div class="flex">[[gradoselec.D204.FIC245]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">SIC-244</div>
+					<div class="flex">rpm</div>
+					<div class="flex">[[gradoselec.D204.SIC244]]</div>
+				</li>
+				<li class="ul-row layout horizontal">
+					<div class="flex">Conc. C₂⁼</div>
+					<div class="flex">% mol</div>
+					<div class="flex">[[gradoselec.D204.CONCC2]]</div>
+				</li>
+			</ul>
+		</paper-card>
+	</template>
+	<script>
+		Polymer({
+			is: 'ciclo-produccion-condiciones',
+
+			properties: {
+				gradoselec: Object
+			},
+
+			listPrevious: function(){
+				var pages = document.querySelector('neon-animated-pages')
+				pages.selectNext();
+				
+			},
+
+			listNext: function(){
+
+			}
+		})
+	</script>
+</dom-module>
